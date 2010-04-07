@@ -1,0 +1,128 @@
+NAME
+    Pod::Spell::CommonMistakes - Catches common typos in POD
+
+SYNOPSIS
+            #!/usr/bin/perl
+            use strict; use warnings;
+
+            use Pod::Spell::CommonMistakes qw( check_pod );
+
+            my $file = $ARGV[0] || 'lib/Pod/Spell/CommonMistakes.pm';
+            my $result = check_pod( $file );
+            if ( keys %$result == 0 ) {
+                    print "File passed tests!\n";
+            } else {
+                    print "File failed tests!\n";
+                    foreach my $k ( keys %$result ) {
+                            print " Found: '$k' - Possible spelling: '$result->{$k}'?\n";
+                    }
+            }
+
+DESCRIPTION
+    This module looks for any typos in your POD. It differs from Pod::Spell
+    or Test::Spelling because it uses a custom wordlist and doesn't use the
+    system spellchecker. The idea for this came from the
+    <http://wiki.debian.org/Teams/Lintian> code in Debian, thanks!
+
+    To use this, just pass it a filename that has POD in it and you'll get a
+    hashref back. If the hashref is empty that means the checker found no
+    misspelled words. If it contains keys, then the keys are the bad words
+    and the values are the suggested spelling.
+
+Methods
+  check_pod( $filename )
+    This function is what you will usually run. It will run the spell checks
+    against the POD in $filename. Warning: you would need to catch any
+    exceptions thrown from this function!
+
+    It returns a hashref of misspelled words and their suggested spelling.
+    If the hash is empty then there is no errors in the POD.
+
+  check_pod_case( $filename )
+    This function behaves the same as check_pod() but it uses a "strict"
+    wordlist instead. The difference is that this wordlist will make sure
+    you capitalize common terms properly. One example is: OpenLdap =>
+    OpenLDAP.
+
+    NOTE: This does NOT run the same checks as check_pod()! If you want to
+    check both the regular and picky wordlists, you would need to use the
+    check_pod_all() function.
+
+  check_pod_all( $filename )
+    This function behaves the same as check_pod() but it runs all the extra
+    checks too. Currently it's just the picky wordlist but others might be
+    added in the future...
+
+EXPORT
+    You would need to manually get the function you want.
+
+SEE ALSO
+    Pod::Spell
+
+SUPPORT
+    You can find documentation for this module with the perldoc command.
+
+            perldoc Pod::Spell::CommonMistakes
+
+  Websites
+    *   Search CPAN
+
+        <http://search.cpan.org/dist/Pod-Spell-CommonMistakes>
+
+    *   AnnoCPAN: Annotated CPAN documentation
+
+        <http://annocpan.org/dist/Pod-Spell-CommonMistakes>
+
+    *   CPAN Ratings
+
+        <http://cpanratings.perl.org/d/Pod-Spell-CommonMistakes>
+
+    *   CPAN Forum
+
+        <http://cpanforum.com/dist/Pod-Spell-CommonMistakes>
+
+    *   RT: CPAN's Request Tracker
+
+        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Pod-Spell-CommonMistakes>
+
+    *   CPANTS Kwalitee
+
+        <http://cpants.perl.org/dist/overview/Pod-Spell-CommonMistakes>
+
+    *   CPAN Testers Results
+
+        <http://cpantesters.org/distro/P/Pod-Spell-CommonMistakes.html>
+
+    *   CPAN Testers Matrix
+
+        <http://matrix.cpantesters.org/?dist=Pod-Spell-CommonMistakes>
+
+    *   Git Source Code Repository
+
+        <http://github.com/apocalypse/perl-pod-spell-commonmistakes>
+
+  Bugs
+    Please report any bugs or feature requests to
+    "bug-pod-spell-commonmistakes at rt.cpan.org", or through the web
+    interface at
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Pod-Spell-CommonMistakes
+    >. I will be notified, and then you'll automatically be notified of
+    progress on your bug as I make changes.
+
+AUTHOR
+    Apocalypse <apocal@cpan.org>
+
+    Thanks goes out to the Lintian team for their work!
+
+    Props goes out to jawnsy@irc for pointing out a spelling mistake in POE,
+    which prompted me to write this.
+
+COPYRIGHT AND LICENSE
+    Copyright 2010 by Apocalypse
+
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
+    The full text of the license can be found in the LICENSE file included
+    with this module.
+

@@ -1,43 +1,40 @@
-# Build.PL
-use strict; use warnings;
-use Module::Build;
 
-my $build = Module::Build->new(
-	# look up Module::Build::API for the info!
-	'dynamic_config'	=> 0,
-	'module_name'		=> 'Pod::Spell::CommonMistakes',
-	'license'		=> 'perl',
+use strict;
+use warnings;
 
-	'dist_abstract'		=> 'Catches common typos in POD',
-	'dist_author'		=> 'Apocalypse <APOCAL@cpan.org>',
+use Module::Build 0.3601;
 
-	'create_packlist'	=> 1,
-	'create_makefile_pl'	=> 'traditional',
-	'create_readme'		=> 1,
-	'create_license'	=> 1,
-	'sign'			=> 0,
 
-	'test_files'		=> 't/*.t',
-
-	'requires'		=> {
-		# We need Pod::Spell for the processing
-		'Pod::Spell'			=> '1.01',
-		'IO::Scalar'			=> '2.110',
-
-		# we need a recent perl
-		'perl'				=> '5.008',
-	},
-
-	# include the standard stuff in META.yml
-	'meta_merge'	=> {
-		'resources'	=> {
-			'license'	=> 'http://dev.perl.org/licenses/',
-			'homepage'	=> 'http://search.cpan.org/dist/Pod-Spell-CommonMistakes',
-			'bugtracker'	=> 'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Pod-Spell-CommonMistakes',
-			'repository'	=> 'http://github.com/apocalypse/perl-pod-spell-commonmistakes',
-		},
-	},
+my %module_build_args = (
+  'build_requires' => {
+    'File::Find' => '0',
+    'File::Temp' => '0',
+    'Module::Build' => '0.3601',
+    'Test::More' => '0.88'
+  },
+  'configure_requires' => {
+    'Module::Build' => '0.3601'
+  },
+  'dist_abstract' => 'Catches common typos in POD',
+  'dist_author' => [
+    'Apocalypse <APOCAL@cpan.org>'
+  ],
+  'dist_name' => 'Pod-Spell-CommonMistakes',
+  'dist_version' => '1.000',
+  'license' => 'perl',
+  'module_name' => 'Pod::Spell::CommonMistakes',
+  'recommends' => {},
+  'recursive_test_files' => 1,
+  'requires' => {
+    'Exporter' => '0',
+    'IO::Scalar' => '2.110',
+    'Pod::Spell' => '1.01',
+    'perl' => '5.008'
+  },
+  'script_files' => []
 );
 
-# all done!
+
+my $build = Module::Build->new(%module_build_args);
+
 $build->create_build_script;

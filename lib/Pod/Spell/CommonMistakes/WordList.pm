@@ -1,19 +1,25 @@
-# Declare our package
-package Pod::Spell::CommonMistakes::WordList;
+#
+# This file is part of Pod-Spell-CommonMistakes
+#
+# This software is copyright (c) 2011 by Apocalypse.
+#
+# This is free software; you can redistribute it and/or modify it under
+# the same terms as the Perl 5 programming language system itself.
+#
 use strict; use warnings;
+package Pod::Spell::CommonMistakes::WordList;
+BEGIN {
+  $Pod::Spell::CommonMistakes::WordList::VERSION = '1.000';
+}
+BEGIN {
+  $Pod::Spell::CommonMistakes::WordList::AUTHORITY = 'cpan:APOCAL';
+}
 
-# Initialize our version
-use vars qw( $VERSION );
-$VERSION = '0.01';
+# ABSTRACT: Holds the wordlist data for Pod::Spell::CommonMistakes
 
 # auto-export our 2 subs
 use base qw( Exporter );
 our @EXPORT = qw( _check_case _check_common );
-
-# This is a simple data module
-# The data is taken from Lintian in the Debian git repo, thanks!
-# http://wiki.debian.org/Teams/Lintian
-# git://git.debian.org/git/lintian/lintian.git
 
 # TODO Figure out an autoimporter?
 # apoc@blackhole:~/othergit/lintian/data/spelling$ cat corrections-case | perl -e 'while ( <STDIN> ) { next if $_ =~ /^#/; if ( $_ =~ /^(.+)\|\|(.+)$/ ) { print " \"$1\" => \"$2\",\n" } }'
@@ -39,6 +45,8 @@ my %case = (
  "debian" => "Debian",
  "Debian-Edu" => "Debian Edu",
  "debian-edu" => "Debian Edu",
+ "Docbook" => "DocBook",
+ "docbook" => "DocBook",
  "english" => "English",
  "french" => "French",
  "EMacs" => "Emacs",
@@ -69,6 +77,7 @@ my %case = (
  "linux" => "Linux",
  "Latex" => "LaTeX",
  "latex" => "LaTeX",
+ "oAuth" => "OAuth",
  "OCAML" => "OCaml",
  "Ocaml" => "OCaml",
  "ocaml" => "OCaml",
@@ -150,6 +159,8 @@ my %common = (
  "abov" => "above",
  "absense" => "absence",
  "absolut" => "absolute",
+ "absoulte" => "absolute",
+ "acceleratoin" => "acceleration",
  "accelleration" => "acceleration",
  "accesing" => "accessing",
  "accesnt" => "accent",
@@ -161,10 +172,18 @@ my %common = (
  "accout" => "account",
  "acess" => "access",
  "acessable" => "accessible",
+ "ackowledge" => "acknowledge",
+ "ackowledged" => "acknowledged",
+ "acknowldegement" => "acknowldegement",
  "acording" => "according",
+ "activete" => "activate",
  "acumulating" => "accumulating",
  "addional" => "additional",
  "additionaly" => "additionally",
+ "addreses" => "addresses",
+ "aditional" => "additional",
+ "aditionally" => "additionally",
+ "aditionaly" => "additionally",
  "adress" => "address",
  "adresses" => "addresses",
  "adviced" => "advised",
@@ -173,9 +192,13 @@ my %common = (
  "alegorical" => "allegorical",
  "algorith" => "algorithm",
  "algorithmical" => "algorithmically",
+ "algoritm" => "algorithm",
  "algoritms" => "algorithms",
+ "algorrithm" => "algorithm",
+ "algorritm" => "algorithm",
  "allpication" => "application",
  "alot" => "a lot",
+ "alow" => "allow",
  "alows" => "allows",
  "altough" => "although",
  "ambigious" => "ambiguous",
@@ -183,6 +206,7 @@ my %common = (
  "amout" => "amount",
  "analysator" => "analyzer",
  "ang" => "and",
+ "anniversery" => "anniversary",
  "annoucement" => "announcement",
  "anomolies" => "anomalies",
  "anomoly" => "anomaly",
@@ -227,6 +251,7 @@ my %common = (
  "avaliable" => "available",
  "backgroud" => "background",
  "bahavior" => "behavior",
+ "baloon" => "balloon",
  "baloons" => "balloons",
  "batery" => "battery",
  "becomming" => "becoming",
@@ -237,13 +262,17 @@ my %common = (
  "capabilites" => "capabilities",
  "capatibilities" => "capabilities",
  "cariage" => "carriage",
+ "challange" => "challenge",
  "challanges" => "challenges",
  "changable" => "changeable",
+ "charachter" => "character",
  "charachters" => "characters",
  "charcter" => "character",
  "childs" => "children",
+ "chnage" => "change",
  "chnages" => "changes",
  "choosen" => "chosen",
+ "collapsable" => "collapsible",
  "colorfull" => "colorful",
  "comand" => "command",
  "comit" => "commit",
@@ -259,11 +288,15 @@ my %common = (
  "compatibiliy" => "compatibility",
  "compatibilty" => "compatibility",
  "compleatly" => "completely",
+ "completly" => "completely",
  "complient" => "compliant",
  "compres" => "compress",
  "compresion" => "compression",
  "configuratoin" => "configuration",
+ "conjuction" => "conjunction",
  "connectinos" => "connections",
+ "connnection" => "connection",
+ "connnections" => "connections",
  "consistancy" => "consistency",
  "containes" => "contains",
  "containts" => "contains",
@@ -276,8 +309,10 @@ my %common = (
  "corected" => "corrected",
  "correponding" => "corresponding",
  "correponds" => "corresponds",
+ "correspoding" => "corresponding",
  "cryptocraphic" => "cryptographic",
  "curently" => "currently",
+ "dafault" => "default",
  "deafult" => "default",
  "deamon" => "daemon",
  "debain" => "Debian",
@@ -289,9 +324,12 @@ my %common = (
  "dependancies" => "dependencies",
  "dependancy" => "dependency",
  "dependant" => "dependent",
+ "desactivate" => "deactivate",
  "detabase" => "database",
  "developement" => "development",
  "developped" => "developed",
+ "developpement" => "development",
+ "developper" => "developer",
  "deveolpment" => "development",
  "devided" => "divided",
  "dictionnary" => "dictionary",
@@ -328,6 +366,7 @@ my %common = (
  "exceded" => "exceeded",
  "excellant" => "excellent",
  "exlcude" => "exclude",
+ "exlcusive" => "exclusive",
  "expecially" => "especially",
  "explicitely" => "explicitly",
  "expresion" => "expression",
@@ -336,6 +375,9 @@ my %common = (
  "failuer" => "failure",
  "familar" => "familiar",
  "fatser" => "faster",
+ "feauture" => "feature",
+ "feautures" => "features",
+ "fetaure" => "feature",
  "fetaures" => "features",
  "forse" => "force",
  "fortan" => "fortran",
@@ -400,12 +442,15 @@ my %common = (
  "maintainance" => "maintenance",
  "maintainence" => "maintenance",
  "makeing" => "making",
+ "malplace" => "misplace",
+ "malplaced" => "misplaced",
  "managable" => "manageable",
  "manoeuvering" => "maneuvering",
  "mathimatical" => "mathematical",
  "mathimatic" => "mathematic",
  "mathimatics" => "mathematics",
  "ment" => "meant",
+ "messsage" => "message",
  "messsages" => "messages",
  "microprocesspr" => "microprocessor",
  "milliseonds" => "milliseconds",
@@ -436,10 +481,12 @@ my %common = (
  "o'caml" => "OCaml",
  "omitt" => "omit",
  "ommitted" => "omitted",
+ "onself" => "oneself",
  "optionnal" => "optional",
  "optmizations" => "optimizations",
  "orientatied" => "orientated",
  "orientied" => "oriented",
+ "ouput" => "output",
  "overaall" => "overall",
  "overriden" => "overridden",
  "pacakge" => "package",
@@ -499,6 +546,9 @@ my %common = (
  "protocoll" => "protocol",
  "psychadelic" => "psychedelic",
  "quering" => "querying",
+ "reasearch" => "research",
+ "reasearcher" => "researcher",
+ "reasearchers" => "researchers",
  "recieved" => "received",
  "recieve" => "receive",
  "reciever" => "receiver",
@@ -518,12 +568,14 @@ my %common = (
  "removeable" => "removable",
  "repectively" => "respectively",
  "replacments" => "replacements",
+ "replys" => "replies",
  "requiere" => "require",
  "requred" => "required",
  "resizeable" => "resizable",
  "ressize" => "resize",
  "ressource" => "resource",
  "retransmited" => "retransmitted",
+ "runned" => "ran",
  "runnning" => "running",
  "safly" => "safely",
  "savable" => "saveable",
@@ -550,6 +602,7 @@ my %common = (
  "speling" => "spelling",
  "splitted" => "split",
  "staically" => "statically",
+ "standardss" => "standards",
  "standart" => "standard",
  "staticly" => "statically",
  "subdirectoires" => "subdirectories",
@@ -566,6 +619,7 @@ my %common = (
  "suppoted" => "supported",
  "suppported" => "supported",
  "suppport" => "support",
+ "surpresses" => "suppresses",
  "suspicously" => "suspiciously",
  "synax" => "syntax",
  "synchonized" => "synchronized",
@@ -602,6 +656,7 @@ my %common = (
  "verison" => "version",
  "verson" => "version",
  "vicefersa" => "vice-versa",
+ "visiters" => "visitors",
  "vitual" => "virtual",
  "whataver" => "whatever",
  "wheter" => "whether",
@@ -609,6 +664,23 @@ my %common = (
  "xwindows" => "X",
  "yur" => "your",
 );
+
+# extra words contributed by CPAN users, thanks!
+# split it up for easier maintenance of Lintian data
+my %common_cpan = (
+ "refering" => "referring",
+ "writeable" => "writable",
+ "nineth" => "ninth",
+ "ommited" => "omitted",
+ "omited" => "omitted",
+ "requrie" => "require",
+ "existant" => "existent",
+ "explict" => "explicit",
+ "agument" => "augument",
+ "destionation" => "destination",
+);
+
+%common = ( %common, %common_cpan );
 
 sub _check_common {
 	my $words = shift;
@@ -635,13 +707,20 @@ sub _check_common {
 }
 
 1;
-__END__
 
-=for stopwords wordlist Lintian
+
+__END__
+=pod
+
+=for stopwords wordlist Lintian git repo
 
 =head1 NAME
 
 Pod::Spell::CommonMistakes::WordList - Holds the wordlist data for Pod::Spell::CommonMistakes
+
+=head1 VERSION
+
+  This document describes v1.000 of Pod::Spell::CommonMistakes::WordList - released February 21, 2011 as part of Pod-Spell-CommonMistakes.
 
 =head1 SYNOPSIS
 
@@ -649,30 +728,39 @@ Pod::Spell::CommonMistakes::WordList - Holds the wordlist data for Pod::Spell::C
 
 =head1 DESCRIPTION
 
-Holds the wordlist used in L<Pod::Spell::CommonMistakes>. The data is taken from L<http://wiki.debian.org/Teams/Lintian>, thanks!
+Holds the wordlist used in L<Pod::Spell::CommonMistakes>. Big thanks goes out to the Debian Lintian team for the wordlist!
 
-	# Data taken from:
-	# lintian/data/spellings/corrections
-	# lintian/data/spellings/corrections-case
+	# Data taken from: http://wiki.debian.org/Teams/Lintian ( git://git.debian.org/git/lintian/lintian.git )
+	# lintian/data/spelling/corrections
+	# lintian/data/spelling/corrections-case
 
-	# Data was synced on Wed Apr  7 13:33:46 MST 2010
-	# The git repo was on 0fbfb39a4510a3e80685ce6201810b7b06f1b78e
+	# Data was synced on Mon Feb 21 15:52:12 2011
+	# The git HEAD was 3afe583b84d4c75bb96f980bb02e6ca0c8e31e68
 
 =head1 SEE ALSO
 
+Please see those modules/websites for more information related to this module.
+
+=over 4
+
+=item *
+
 L<Pod::Spell::CommonMistakes>
+
+=back
 
 =head1 AUTHOR
 
-Apocalypse E<lt>apocal@cpan.orgE<gt>
-
-Thanks goes out to the Lintian team for their work!
+Apocalypse <APOCAL@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2010 by Apocalypse
+This software is copyright (c) 2011 by Apocalypse.
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+The full text of the license can be found in the LICENSE file included with this distribution.
 
 =cut
+

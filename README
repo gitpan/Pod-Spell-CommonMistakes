@@ -1,6 +1,9 @@
 NAME
     Pod::Spell::CommonMistakes - Catches common typos in POD
 
+VERSION
+      This document describes v1.000 of Pod::Spell::CommonMistakes - released February 21, 2011 as part of Pod-Spell-CommonMistakes.
+
 SYNOPSIS
             #!/usr/bin/perl
             use strict; use warnings;
@@ -29,7 +32,7 @@ DESCRIPTION
     misspelled words. If it contains keys, then the keys are the bad words
     and the values are the suggested spelling.
 
-Methods
+METHODS
   check_pod( $filename )
     This function is what you will usually run. It will run the spell checks
     against the POD in $filename. Warning: you would need to catch any
@@ -39,35 +42,48 @@ Methods
     If the hash is empty then there is no errors in the POD.
 
   check_pod_case( $filename )
-    This function behaves the same as check_pod() but it uses a "strict"
-    wordlist instead. The difference is that this wordlist will make sure
-    you capitalize common terms properly. One example is: OpenLdap =>
+    This function behaves the same as "check_pod( $filename )" but it uses a
+    "case" wordlist instead. The difference is that this wordlist will make
+    sure you capitalize common terms properly. One example is: OpenLdap =>
     OpenLDAP.
 
-    NOTE: This does NOT run the same checks as check_pod()! If you want to
-    check both the regular and picky wordlists, you would need to use the
-    check_pod_all() function.
+    NOTE: This does NOT run the same checks as "check_pod( $filename )"! You
+    would need to use the "check_pod_all( $filename )" function.
 
   check_pod_all( $filename )
-    This function behaves the same as check_pod() but it runs all the extra
-    checks too. Currently it's just the picky wordlist but others might be
-    added in the future...
+    This function behaves the same as "check_pod( $filename )" but it runs
+    all the extra checks too. Currently it's just the case wordlist but
+    others might be added in the future...
 
 EXPORT
     You would need to manually get the function you want.
 
 SEE ALSO
-    Pod::Spell
+    Please see those modules/websites for more information related to this
+    module.
+
+    *   Pod::Spell
+
+    *   Test::Pod::Spelling::CommonMistakes
 
 SUPPORT
+  Perldoc
     You can find documentation for this module with the perldoc command.
 
-            perldoc Pod::Spell::CommonMistakes
+      perldoc Pod::Spell::CommonMistakes
 
   Websites
+    The following websites have more information about this module, and may
+    be of help to you. As always, in addition to those websites please use
+    your favorite search engine to discover more resources.
+
     *   Search CPAN
 
         <http://search.cpan.org/dist/Pod-Spell-CommonMistakes>
+
+    *   RT: CPAN's Bug Tracker
+
+        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Pod-Spell-CommonMistakes>
 
     *   AnnoCPAN: Annotated CPAN documentation
 
@@ -81,10 +97,6 @@ SUPPORT
 
         <http://cpanforum.com/dist/Pod-Spell-CommonMistakes>
 
-    *   RT: CPAN's Request Tracker
-
-        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Pod-Spell-CommonMistakes>
-
     *   CPANTS Kwalitee
 
         <http://cpants.perl.org/dist/overview/Pod-Spell-CommonMistakes>
@@ -97,32 +109,66 @@ SUPPORT
 
         <http://matrix.cpantesters.org/?dist=Pod-Spell-CommonMistakes>
 
-    *   Git Source Code Repository
+  Email
+    You can email the author of this module at "APOCAL at cpan.org" asking
+    for help with any problems you have.
 
-        <http://github.com/apocalypse/perl-pod-spell-commonmistakes>
+  Internet Relay Chat
+    You can get live help by using IRC ( Internet Relay Chat ). If you don't
+    know what IRC is, please read this excellent guide:
+    <http://en.wikipedia.org/wiki/Internet_Relay_Chat>. Please be courteous
+    and patient when talking to us, as we might be busy or sleeping! You can
+    join those networks/channels and get help:
 
-  Bugs
-    Please report any bugs or feature requests to
+    *   irc.perl.org
+
+        You can connect to the server at 'irc.perl.org' and join this
+        channel: #perl-help then talk to this person for help: Apocalypse.
+
+    *   irc.freenode.net
+
+        You can connect to the server at 'irc.freenode.net' and join this
+        channel: #perl then talk to this person for help: Apocal.
+
+    *   irc.efnet.org
+
+        You can connect to the server at 'irc.efnet.org' and join this
+        channel: #perl then talk to this person for help: Ap0cal.
+
+  Bugs / Feature Requests
+    Please report any bugs or feature requests by email to
     "bug-pod-spell-commonmistakes at rt.cpan.org", or through the web
     interface at
     <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Pod-Spell-CommonMistakes
-    >. I will be notified, and then you'll automatically be notified of
-    progress on your bug as I make changes.
+    >. You will be automatically notified of any progress on the request by
+    the system.
+
+  Source Code
+    The code is open to the world, and available for you to hack on. Please
+    feel free to browse it and play with it, or whatever. If you want to
+    contribute patches, please send me a diff or prod me to pull from your
+    repository :)
+
+    <http://github.com/apocalypse/perl-pod-spell-commonmistakes>
+
+      git clone git://github.com/apocalypse/perl-pod-spell-commonmistakes.git
 
 AUTHOR
-    Apocalypse <apocal@cpan.org>
+    Apocalypse <APOCAL@cpan.org>
 
-    Thanks goes out to the Lintian team for their work!
-
+ACKNOWLEDGEMENTS
     Props goes out to jawnsy@irc for pointing out a spelling mistake in POE,
     which prompted me to write this.
 
-COPYRIGHT AND LICENSE
-    Copyright 2010 by Apocalypse
+    THANKS goes out to the Debian Lintian code, as it was a great starting
+    place! <http://wiki.debian.org/Teams/Lintian>
 
-    This library is free software; you can redistribute it and/or modify it
-    under the same terms as Perl itself.
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2011 by Apocalypse.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 
     The full text of the license can be found in the LICENSE file included
-    with this module.
+    with this distribution.
 

@@ -1,19 +1,16 @@
 #
 # This file is part of Pod-Spell-CommonMistakes
 #
-# This software is copyright (c) 2011 by Apocalypse.
+# This software is copyright (c) 2014 by Apocalypse.
 #
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
 #
 use strict; use warnings;
 package Pod::Spell::CommonMistakes;
-BEGIN {
-  $Pod::Spell::CommonMistakes::VERSION = '1.000';
-}
-BEGIN {
-  $Pod::Spell::CommonMistakes::AUTHORITY = 'cpan:APOCAL';
-}
+# git description: release-1.000-9-g18e2e36
+$Pod::Spell::CommonMistakes::VERSION = '1.001';
+our $AUTHORITY = 'cpan:APOCAL';
 
 # ABSTRACT: Catches common typos in POD
 
@@ -23,9 +20,17 @@ use Pod::Spell 1.01;
 use IO::Scalar 2.110;
 
 # auto-export our 2 subs
-use base qw( Exporter );
+use parent qw( Exporter );
 our @EXPORT_OK = qw( check_pod check_pod_case check_pod_all );
 
+#pod =method check_pod( $filename )
+#pod
+#pod This function is what you will usually run. It will run the spell checks against the POD in $filename. Warning: you would need to catch any
+#pod exceptions thrown from this function!
+#pod
+#pod It returns a hashref of misspelled words and their suggested spelling. If the hash is empty then there is no errors in the POD.
+#pod
+#pod =cut
 
 sub check_pod {
 	my $pod = shift;
@@ -35,6 +40,14 @@ sub check_pod {
 	return _check_common( $words );
 }
 
+#pod =method check_pod_case( $filename )
+#pod
+#pod This function behaves the same as L</check_pod( $filename )> but it uses a "case" wordlist instead. The difference is that this wordlist
+#pod will make sure you capitalize common terms properly. One example is: OpenLdap => OpenLDAP.
+#pod
+#pod NOTE: This does NOT run the same checks as L</check_pod( $filename )>! You would need to use the L</check_pod_all( $filename )> function.
+#pod
+#pod =cut
 
 sub check_pod_case {
 	my $pod = shift;
@@ -44,6 +57,12 @@ sub check_pod_case {
 	return _check_case( $words );
 }
 
+#pod =method check_pod_all( $filename )
+#pod
+#pod This function behaves the same as L</check_pod( $filename )> but it runs all the extra checks too. Currently it's just the case wordlist
+#pod but others might be added in the future...
+#pod
+#pod =cut
 
 sub check_pod_all {
 	my $pod = shift;
@@ -80,11 +99,15 @@ sub _parse {
 
 1;
 
-
 __END__
+
 =pod
 
-=for stopwords OpenLDAP OpenLdap spellchecker wordlist wordlists Lintian
+=encoding UTF-8
+
+=for :stopwords Apocalypse cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee
+diff irc mailto metadata placeholders metacpan OpenLDAP OpenLdap
+spellchecker wordlist wordlists Lintian
 
 =head1 NAME
 
@@ -92,7 +115,7 @@ Pod::Spell::CommonMistakes - Catches common typos in POD
 
 =head1 VERSION
 
-  This document describes v1.000 of Pod::Spell::CommonMistakes - released February 21, 2011 as part of Pod-Spell-CommonMistakes.
+  This document describes v1.001 of Pod::Spell::CommonMistakes - released October 31, 2014 as part of Pod-Spell-CommonMistakes.
 
 =head1 SYNOPSIS
 
@@ -153,15 +176,13 @@ Please see those modules/websites for more information related to this module.
 
 =item *
 
-L<Pod::Spell>
+L<Pod::Spell|Pod::Spell>
 
 =item *
 
-L<Test::Pod::Spelling::CommonMistakes>
+L<Test::Pod::Spelling::CommonMistakes|Test::Pod::Spelling::CommonMistakes>
 
 =back
-
-=for :stopwords cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee diff irc mailto metadata placeholders
 
 =head1 SUPPORT
 
@@ -180,7 +201,17 @@ in addition to those websites please use your favorite search engine to discover
 
 =item *
 
+MetaCPAN
+
+A modern, open-source CPAN search engine, useful to view POD in HTML format.
+
+L<http://metacpan.org/release/Pod-Spell-CommonMistakes>
+
+=item *
+
 Search CPAN
+
+The default CPAN search engine, useful to view POD in HTML format.
 
 L<http://search.cpan.org/dist/Pod-Spell-CommonMistakes>
 
@@ -188,11 +219,15 @@ L<http://search.cpan.org/dist/Pod-Spell-CommonMistakes>
 
 RT: CPAN's Bug Tracker
 
+The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
+
 L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Pod-Spell-CommonMistakes>
 
 =item *
 
-AnnoCPAN: Annotated CPAN documentation
+AnnoCPAN
+
+The AnnoCPAN is a website that allows community annotations of Perl module documentation.
 
 L<http://annocpan.org/dist/Pod-Spell-CommonMistakes>
 
@@ -200,31 +235,49 @@ L<http://annocpan.org/dist/Pod-Spell-CommonMistakes>
 
 CPAN Ratings
 
+The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
+
 L<http://cpanratings.perl.org/d/Pod-Spell-CommonMistakes>
 
 =item *
 
 CPAN Forum
 
+The CPAN Forum is a web forum for discussing Perl modules.
+
 L<http://cpanforum.com/dist/Pod-Spell-CommonMistakes>
 
 =item *
 
-CPANTS Kwalitee
+CPANTS
 
-L<http://cpants.perl.org/dist/overview/Pod-Spell-CommonMistakes>
+The CPANTS is a website that analyzes the Kwalitee ( code metrics ) of a distribution.
+
+L<http://cpants.cpanauthors.org/dist/overview/Pod-Spell-CommonMistakes>
 
 =item *
 
-CPAN Testers Results
+CPAN Testers
 
-L<http://cpantesters.org/distro/P/Pod-Spell-CommonMistakes.html>
+The CPAN Testers is a network of smokers who run automated tests on uploaded CPAN distributions.
+
+L<http://www.cpantesters.org/distro/P/Pod-Spell-CommonMistakes>
 
 =item *
 
 CPAN Testers Matrix
 
+The CPAN Testers Matrix is a website that provides a visual overview of the test results for a distribution on various Perls/platforms.
+
 L<http://matrix.cpantesters.org/?dist=Pod-Spell-CommonMistakes>
+
+=item *
+
+CPAN Testers Dependencies
+
+The CPAN Testers Dependencies is a website that shows a chart of the test results of all dependencies for a distribution.
+
+L<http://deps.cpantesters.org/?module=Pod::Spell::CommonMistakes>
 
 =back
 
@@ -273,7 +326,7 @@ The code is open to the world, and available for you to hack on. Please feel fre
 with it, or whatever. If you want to contribute patches, please send me a diff or prod me to pull
 from your repository :)
 
-L<http://github.com/apocalypse/perl-pod-spell-commonmistakes>
+L<https://github.com/apocalypse/perl-pod-spell-commonmistakes>
 
   git clone git://github.com/apocalypse/perl-pod-spell-commonmistakes.git
 
@@ -289,12 +342,33 @@ B<THANKS> goes out to the Debian Lintian code, as it was a great starting place!
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Apocalypse.
+This software is copyright (c) 2014 by Apocalypse.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
-The full text of the license can be found in the LICENSE file included with this distribution.
+The full text of the license can be found in the
+F<LICENSE> file included with this distribution.
+
+=head1 DISCLAIMER OF WARRANTY
+
+THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
+THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY
+GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
+USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF
+DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD
+PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS),
+EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
 
 =cut
-

@@ -1,28 +1,24 @@
 #
 # This file is part of Pod-Spell-CommonMistakes
 #
-# This software is copyright (c) 2011 by Apocalypse.
+# This software is copyright (c) 2014 by Apocalypse.
 #
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
 #
 use strict; use warnings;
 package Pod::Spell::CommonMistakes::WordList;
-BEGIN {
-  $Pod::Spell::CommonMistakes::WordList::VERSION = '1.000';
-}
-BEGIN {
-  $Pod::Spell::CommonMistakes::WordList::AUTHORITY = 'cpan:APOCAL';
-}
+$Pod::Spell::CommonMistakes::WordList::VERSION = '1.001';
+our $AUTHORITY = 'cpan:APOCAL';
 
 # ABSTRACT: Holds the wordlist data for Pod::Spell::CommonMistakes
 
 # auto-export our 2 subs
-use base qw( Exporter );
+use parent qw( Exporter );
 our @EXPORT = qw( _check_case _check_common );
 
 # TODO Figure out an autoimporter?
-# apoc@blackhole:~/othergit/lintian/data/spelling$ cat corrections-case | perl -e 'while ( <STDIN> ) { next if $_ =~ /^#/; if ( $_ =~ /^(.+)\|\|(.+)$/ ) { print " \"$1\" => \"$2\",\n" } }'
+# apoc@box:~/lintian/data/spelling$ cat corrections-case | perl -e 'print "my \%case = (\n"; while ( <STDIN> ) { next if $_ =~ /^#/; if ( $_ =~ /^(.+)\|\|(.+)$/ ) { print " \"$1\" => \"$2\",\n" } }; print ");\n"'
 
 # CASE LIST
 
@@ -84,6 +80,9 @@ my %case = (
  "OpenLdap" => "OpenLDAP",
  "Openldap" => "OpenLDAP",
  "openldap" => "OpenLDAP",
+ "openstreetmap" => "OpenStreetMap",
+ "Openstreetmap" => "OpenStreetMap",
+ "OpenStreetmap" => "OpenStreetMap",
  "Postgresql" => "PostgreSQL",
  "postgresql" => "PostgreSQL",
  "python" => "Python",
@@ -152,7 +151,14 @@ sub _check_case {
 # Note that corrections involving multiple word mistakes or case errors
 # should be included in the appropriate data file, rather than here.
 
-my %common = (
+# TODO Figure out an autoimporter?
+# apoc@box:~/lintian/data/spelling$ cat corrections | perl -e 'print "my \%common = (\n"; while ( <STDIN> ) { next if $_ =~ /^#/; if ( $_ =~ /^(.+)\|\|(.+)$/ ) { print " \"$1\" => \"$2\",\n" } }; print ");\n"'
+
+# TODO ARGH Perl::Critic!@#$
+# Perl::Critic found these violations in "blib/lib/Pod/Spell/CommonMistakes/WordList.pm":
+# [ValuesAndExpressions::ProhibitDuplicateHashKeys] Duplicate hash key "availble" at line 257, near '"availble" => "available",'
+# [ValuesAndExpressions::ProhibitDuplicateHashKeys] Duplicate hash key "avaliable" at line 260, near '"avaliable" => "available",'
+my %common = ( ## no critic (ValuesAndExpressions::ProhibitDuplicateHashKeys)
  "abandonning" => "abandoning",
  "abigious" => "ambiguous",
  "abitrate" => "arbitrate",
@@ -165,16 +171,18 @@ my %common = (
  "accesing" => "accessing",
  "accesnt" => "accent",
  "accessable" => "accessible",
+ "accesss" => "access",
  "accidentaly" => "accidentally",
  "accidentually" => "accidentally",
  "accomodate" => "accommodate",
  "accomodates" => "accommodates",
  "accout" => "account",
- "acess" => "access",
  "acessable" => "accessible",
+ "acess" => "access",
+ "acient" => "ancient",
+ "acknowldegement" => "acknowldegement",
  "ackowledge" => "acknowledge",
  "ackowledged" => "acknowledged",
- "acknowldegement" => "acknowldegement",
  "acording" => "according",
  "activete" => "activate",
  "acumulating" => "accumulating",
@@ -197,6 +205,7 @@ my %common = (
  "algorrithm" => "algorithm",
  "algorritm" => "algorithm",
  "allpication" => "application",
+ "alogirhtms" => "algorithms",
  "alot" => "a lot",
  "alow" => "allow",
  "alows" => "allows",
@@ -212,6 +221,8 @@ my %common = (
  "anomoly" => "anomaly",
  "aplication" => "application",
  "appearence" => "appearance",
+ "appliction" => "application",
+ "applictions" => "applications",
  "appropiate" => "appropriate",
  "appropriatly" => "appropriately",
  "aquired" => "acquired",
@@ -228,7 +239,9 @@ my %common = (
  "assigments" => "assignments",
  "assistent" => "assistant",
  "asuming" => "assuming",
+ "asycronous" => "asynchronous",
  "atomatically" => "automatically",
+ "attachement" => "attachment",
  "attemps" => "attempts",
  "attruibutes" => "attributes",
  "authentification" => "authentication",
@@ -253,10 +266,12 @@ my %common = (
  "bahavior" => "behavior",
  "baloon" => "balloon",
  "baloons" => "balloons",
+ "bandwith" => "bandwidth",
  "batery" => "battery",
  "becomming" => "becoming",
  "becuase" => "because",
  "begining" => "beginning",
+ "bianries" => "binaries",
  "calender" => "calendar",
  "cancelation" => "cancellation",
  "capabilites" => "capabilities",
@@ -267,6 +282,8 @@ my %common = (
  "changable" => "changeable",
  "charachter" => "character",
  "charachters" => "characters",
+ "charater" => "character",
+ "charaters" => "characters",
  "charcter" => "character",
  "childs" => "children",
  "chnage" => "change",
@@ -287,21 +304,27 @@ my %common = (
  "compatable" => "compatible",
  "compatibiliy" => "compatibility",
  "compatibilty" => "compatibility",
+ "compilant" => "compliant",
  "compleatly" => "completely",
  "completly" => "completely",
  "complient" => "compliant",
  "compres" => "compress",
  "compresion" => "compression",
+ "comression" => "compression",
+ "conditionaly" => "conditionally",
  "configuratoin" => "configuration",
  "conjuction" => "conjunction",
  "connectinos" => "connections",
  "connnection" => "connection",
  "connnections" => "connections",
  "consistancy" => "consistency",
+ "consistant" => "consistent",
  "containes" => "contains",
  "containts" => "contains",
+ "contaisn" => "contains",
  "contence" => "contents",
  "continous" => "continuous",
+ "continously" => "continuously",
  "continueing" => "continuing",
  "contraints" => "constraints",
  "convertor" => "converter",
@@ -320,22 +343,28 @@ my %common = (
  "decompres" => "decompress",
  "definate" => "definite",
  "definately" => "definitely",
+ "delared" => "declared",
+ "delare" => "declare",
+ "delares" => "declares",
+ "delaring" => "declaring",
  "delemiter" => "delimiter",
  "dependancies" => "dependencies",
  "dependancy" => "dependency",
  "dependant" => "dependent",
+ "depreacted" => "deprecated",
+ "depreacte" => "deprecate",
  "desactivate" => "deactivate",
  "detabase" => "database",
  "developement" => "development",
  "developped" => "developed",
  "developpement" => "development",
  "developper" => "developer",
+ "developpment" => "development",
  "deveolpment" => "development",
  "devided" => "divided",
  "dictionnary" => "dictionary",
  "diplay" => "display",
  "disapeared" => "disappeared",
- "discontiguous" => "noncontiguous",
  "dispertion" => "dispersion",
  "dissapears" => "disappears",
  "docuentation" => "documentation",
@@ -348,6 +377,7 @@ my %common = (
  "ecspecially" => "especially",
  "edditable" => "editable",
  "editting" => "editing",
+ "efficently" => "efficiently",
  "eletronic" => "electronic",
  "enchanced" => "enhanced",
  "encorporating" => "incorporating",
@@ -356,12 +386,17 @@ my %common = (
  "enlightnment" => "enlightenment",
  "enocded" => "encoded",
  "enterily" => "entirely",
+ "envireonment" => "environment",
  "enviroiment" => "environment",
  "enviroment" => "environment",
  "environement" => "environment",
  "environent" => "environment",
+ "equiped" => "equipped",
  "equivelant" => "equivalent",
  "equivilant" => "equivalent",
+ "estbalishment" => "establishment",
+ "etsablishment" => "establishment",
+ "etsbalishment" => "establishment",
  "excecutable" => "executable",
  "exceded" => "exceeded",
  "excellant" => "excellent",
@@ -369,9 +404,13 @@ my %common = (
  "exlcusive" => "exclusive",
  "expecially" => "especially",
  "explicitely" => "explicitly",
+ "explict" => "explicit",
+ "explictly" => "explicitly",
  "expresion" => "expression",
  "exprimental" => "experimental",
+ "extensability" => "extensibility",
  "extention" => "extension",
+ "extracter" => "extractor",
  "failuer" => "failure",
  "familar" => "familiar",
  "fatser" => "faster",
@@ -385,16 +424,20 @@ my %common = (
  "framwork" => "framework",
  "fuction" => "function",
  "fuctions" => "functions",
+ "functionallity" => "functionality",
  "functionaly" => "functionally",
  "functionnality" => "functionality",
+ "functiosn" => "functions",
  "functonality" => "functionality",
  "futhermore" => "furthermore",
  "generiously" => "generously",
+ "grabing" => "grabbing",
  "grahical" => "graphical",
  "grahpical" => "graphical",
  "grapic" => "graphic",
  "guage" => "gauge",
  "halfs" => "halves",
+ "handfull" => "handful",
  "heirarchically" => "hierarchically",
  "helpfull" => "helpful",
  "hierachy" => "hierarchy",
@@ -410,6 +453,7 @@ my %common = (
  "indendation" => "indentation",
  "indended" => "intended",
  "independant" => "independent",
+ "independed" => "independent",
  "informatiom" => "information",
  "informations" => "information",
  "infromation" => "information",
@@ -424,15 +468,23 @@ my %common = (
  "interchangable" => "interchangeable",
  "intermittant" => "intermittent",
  "interupted" => "interrupted",
+ "intial" => "initial",
+ "intregral" => "integral",
+ "intuative" => "intuitive",
+ "invokation" => "invocation",
+ "invokations" => "invocations",
  "jave" => "java",
  "langage" => "language",
  "langauage" => "language",
+ "langauge" => "language",
  "langugage" => "language",
  "lauch" => "launch",
+ "leightweight" => "lightweight",
  "lenght" => "length",
  "lesstiff" => "lesstif",
  "libaries" => "libraries",
  "libary" => "library",
+ "librairies" => "libraries",
  "libraris" => "libraries",
  "licenceing" => "licencing",
  "loggging" => "logging",
@@ -441,10 +493,12 @@ my %common = (
  "machinary" => "machinery",
  "maintainance" => "maintenance",
  "maintainence" => "maintenance",
+ "maintan" => "maintain",
  "makeing" => "making",
- "malplace" => "misplace",
  "malplaced" => "misplaced",
+ "malplace" => "misplace",
  "managable" => "manageable",
+ "managment" => "management",
  "manoeuvering" => "maneuvering",
  "mathimatical" => "mathematical",
  "mathimatic" => "mathematic",
@@ -457,14 +511,15 @@ my %common = (
  "miscelleneous" => "miscellaneous",
  "misformed" => "malformed",
  "mispelled" => "misspelled",
+ "mispelt" => "misspelt",
  "mmnemonic" => "mnemonic",
  "modulues" => "modules",
  "monochorome" => "monochrome",
  "monochromo" => "monochrome",
  "monocrome" => "monochrome",
  "mroe" => "more",
- "multidimensionnal" => "multidimensional",
  "mulitplied" => "multiplied",
+ "multidimensionnal" => "multidimensional",
  "mutiple" => "multiple",
  "nam" => "name",
  "nams" => "names",
@@ -479,6 +534,7 @@ my %common = (
  "noticable" => "noticeable",
  "notications" => "notifications",
  "o'caml" => "OCaml",
+ "occationally" => "occasionally",
  "omitt" => "omit",
  "ommitted" => "omitted",
  "onself" => "oneself",
@@ -499,10 +555,12 @@ my %common = (
  "paramameters" => "parameters",
  "paramater" => "parameter",
  "parametes" => "parameters",
+ "parametised" => "parametrised",
  "paramter" => "parameter",
  "paramters" => "parameters",
  "particularily" => "particularly",
  "pased" => "passed",
+ "pendantic" => "pedantic",
  "peprocessor" => "preprocessor",
  "perfoming" => "performing",
  "permissons" => "permissions",
@@ -510,7 +568,9 @@ my %common = (
  "plattform" => "platform",
  "pleaes" => "please",
  "ploting" => "plotting",
+ "poinnter" => "pointer",
  "posible" => "possible",
+ "possibilites" => "possibilities",
  "postgressql" => "PostgreSQL",
  "powerfull" => "powerful",
  "preceeded" => "preceded",
@@ -523,10 +583,13 @@ my %common = (
  "primative" => "primitive",
  "princliple" => "principle",
  "priorty" => "priority",
+ "priviledge" => "privilege",
+ "priviledges" => "privileges",
  "procceed" => "proceed",
  "proccesors" => "processors",
  "proces" => "process",
  "processessing" => "processing",
+ "processess" => "processes",
  "processpr" => "processor",
  "processsing" => "processing",
  "progams" => "programs",
@@ -539,6 +602,8 @@ my %common = (
  "pronouce" => "pronounce",
  "pronunce" => "pronounce",
  "propery" => "property",
+ "propigate" => "propagate",
+ "propigation" => "propagation",
  "prosess" => "process",
  "protable" => "portable",
  "protcol" => "protocol",
@@ -546,9 +611,9 @@ my %common = (
  "protocoll" => "protocol",
  "psychadelic" => "psychedelic",
  "quering" => "querying",
- "reasearch" => "research",
  "reasearcher" => "researcher",
  "reasearchers" => "researchers",
+ "reasearch" => "research",
  "recieved" => "received",
  "recieve" => "receive",
  "reciever" => "receiver",
@@ -571,12 +636,20 @@ my %common = (
  "replys" => "replies",
  "requiere" => "require",
  "requred" => "required",
+ "requried" => "required",
  "resizeable" => "resizable",
  "ressize" => "resize",
  "ressource" => "resource",
+ "ressources" => "resources",
  "retransmited" => "retransmitted",
+ "retreive" => "retrieve",
+ "retreived" => "retrieved",
+ "rmeoved" => "removed",
+ "rmeove" => "remove",
+ "rmeoves" => "removes",
  "runned" => "ran",
  "runnning" => "running",
+ "sacrifying" => "sacrificing",
  "safly" => "safely",
  "savable" => "saveable",
  "searchs" => "searches",
@@ -588,19 +661,23 @@ my %common = (
  "seperate" => "separate",
  "seperatly" => "separately",
  "seperator" => "separator",
+ "sepperate" => "separate",
  "sequencial" => "sequential",
  "serveral" => "several",
  "setts" => "sets",
  "similiar" => "similar",
  "simliar" => "similar",
+ "softwares" => "software",
  "speach" => "speech",
  "speciefied" => "specified",
  "specifed" => "specified",
+ "specificatin" => "specification",
  "specificaton" => "specification",
  "specifing" => "specifying",
  "speficied" => "specified",
  "speling" => "spelling",
  "splitted" => "split",
+ "spreaded" => "spread",
  "staically" => "statically",
  "standardss" => "standards",
  "standart" => "standard",
@@ -619,6 +696,7 @@ my %common = (
  "suppoted" => "supported",
  "suppported" => "supported",
  "suppport" => "support",
+ "supress" => "suppress",
  "surpresses" => "suppresses",
  "suspicously" => "suspiciously",
  "synax" => "syntax",
@@ -627,20 +705,29 @@ my %common = (
  "syncronizing" => "synchronizing",
  "syncronus" => "synchronous",
  "syste" => "system",
+ "sytem" => "system",
  "sythesis" => "synthesis",
  "taht" => "that",
+ "targetted" => "targeted",
+ "targetting" => "targeting",
+ "teh" => "the",
  "throught" => "through",
+ "transfered" => "transferred",
  "transfering" => "transferring",
  "trasmission" => "transmission",
  "treshold" => "threshold",
  "trigerring" => "triggering",
+ "unconditionaly" => "unconditionally",
  "unecessary" => "unnecessary",
  "unexecpted" => "unexpected",
  "unfortunatelly" => "unfortunately",
  "unknonw" => "unknown",
  "unkown" => "unknown",
+ "unneedingly" => "unnecessarily",
  "unuseful" => "useless",
+ "usefule" => "useful",
  "usefull" => "useful",
+ "usege" => "usage",
  "usera" => "users",
  "usetnet" => "Usenet",
  "usualy" => "usually",
@@ -661,6 +748,7 @@ my %common = (
  "whataver" => "whatever",
  "wheter" => "whether",
  "wierd" => "weird",
+ "writting" => "writing",
  "xwindows" => "X",
  "yur" => "your",
 );
@@ -693,9 +781,9 @@ sub _check_common {
 		my $lcw = lc( $w );
 		if ( exists $common{ $lcw } ) {
 			# Determine what kind of correction we need
-			if ( $w =~ /^[A-Z]+$/ ) {
+			if ( $w =~ /^[[:upper:]]+$/ ) {
 				$err{ $w } = uc( $common{ $lcw } );
-			} elsif ( $w =~ /^[A-Z]/ ) {
+			} elsif ( $w =~ /^[[:upper:]]/ ) {
 				$err{ $w } = ucfirst( $common{ $lcw } );
 			} else {
 				$err{ $w } = $common{ $lcw };
@@ -708,11 +796,13 @@ sub _check_common {
 
 1;
 
-
 __END__
+
 =pod
 
-=for stopwords wordlist Lintian git repo
+=encoding UTF-8
+
+=for :stopwords Apocalypse wordlist Lintian git repo
 
 =head1 NAME
 
@@ -720,7 +810,7 @@ Pod::Spell::CommonMistakes::WordList - Holds the wordlist data for Pod::Spell::C
 
 =head1 VERSION
 
-  This document describes v1.000 of Pod::Spell::CommonMistakes::WordList - released February 21, 2011 as part of Pod-Spell-CommonMistakes.
+  This document describes v1.001 of Pod::Spell::CommonMistakes::WordList - released October 31, 2014 as part of Pod-Spell-CommonMistakes.
 
 =head1 SYNOPSIS
 
@@ -734,8 +824,8 @@ Holds the wordlist used in L<Pod::Spell::CommonMistakes>. Big thanks goes out to
 	# lintian/data/spelling/corrections
 	# lintian/data/spelling/corrections-case
 
-	# Data was synced on Mon Feb 21 15:52:12 2011
-	# The git HEAD was 3afe583b84d4c75bb96f980bb02e6ca0c8e31e68
+	# Data was synced on Fri Oct 31 11:04:39 2014
+	# The git HEAD was 93cdfcaf1a7bad36da72263e2212d8f9bd7846a2
 
 =head1 SEE ALSO
 
@@ -745,7 +835,7 @@ Please see those modules/websites for more information related to this module.
 
 =item *
 
-L<Pod::Spell::CommonMistakes>
+L<Pod::Spell::CommonMistakes|Pod::Spell::CommonMistakes>
 
 =back
 
@@ -755,12 +845,33 @@ Apocalypse <APOCAL@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Apocalypse.
+This software is copyright (c) 2014 by Apocalypse.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
-The full text of the license can be found in the LICENSE file included with this distribution.
+The full text of the license can be found in the
+F<LICENSE> file included with this distribution.
+
+=head1 DISCLAIMER OF WARRANTY
+
+THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
+THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY
+GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
+USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF
+DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD
+PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS),
+EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
 
 =cut
-

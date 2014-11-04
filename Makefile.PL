@@ -89,19 +89,19 @@ my %WriteMakefileArgs = (
     "Exporter" => 0,
     "IO::Scalar" => "2.110",
     "Pod::Spell" => "1.01",
-    "Pod::Spelling" => 0,
     "parent" => 0,
     "strict" => 0,
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
+    "ExtUtils::MakeMaker" => 0,
     "File::Spec" => 0,
     "File::Temp" => 0,
     "IO::Handle" => 0,
     "IPC::Open3" => 0,
-    "Test::More" => "0.88"
+    "Test::More" => 0
   },
-  "VERSION" => "1.001",
+  "VERSION" => "1.002",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -117,8 +117,7 @@ my %FallbackPrereqs = (
   "IPC::Open3" => 0,
   "Module::Build::Tiny" => "0.039",
   "Pod::Spell" => "1.01",
-  "Pod::Spelling" => 0,
-  "Test::More" => "0.88",
+  "Test::More" => 0,
   "parent" => 0,
   "strict" => 0,
   "warnings" => 0

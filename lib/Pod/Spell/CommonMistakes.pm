@@ -8,8 +8,8 @@
 #
 use strict; use warnings;
 package Pod::Spell::CommonMistakes;
-# git description: release-1.000-9-g18e2e36
-$Pod::Spell::CommonMistakes::VERSION = '1.001';
+# git description: release-1.001-2-geeb9f4d
+$Pod::Spell::CommonMistakes::VERSION = '1.002';
 our $AUTHORITY = 'cpan:APOCAL';
 
 # ABSTRACT: Catches common typos in POD
@@ -115,7 +115,7 @@ Pod::Spell::CommonMistakes - Catches common typos in POD
 
 =head1 VERSION
 
-  This document describes v1.001 of Pod::Spell::CommonMistakes - released October 31, 2014 as part of Pod-Spell-CommonMistakes.
+  This document describes v1.002 of Pod::Spell::CommonMistakes - released November 04, 2014 as part of Pod-Spell-CommonMistakes.
 
 =head1 SYNOPSIS
 
@@ -328,7 +328,7 @@ from your repository :)
 
 L<https://github.com/apocalypse/perl-pod-spell-commonmistakes>
 
-  git clone git://github.com/apocalypse/perl-pod-spell-commonmistakes.git
+  git clone https://github.com/apocalypse/perl-pod-spell-commonmistakes.git
 
 =head1 AUTHOR
 

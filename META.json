@@ -15,7 +15,6 @@
    "name" : "Pod-Spell-CommonMistakes",
    "no_index" : {
       "directory" : [
-         "t",
          "examples"
       ]
    },
@@ -27,17 +26,11 @@
             "perl" : "5.006"
          }
       },
-      "develop" : {
-         "requires" : {
-            "version" : "0.9901"
-         }
-      },
       "runtime" : {
          "requires" : {
             "Exporter" : "0",
             "IO::Scalar" : "2.110",
             "Pod::Spell" : "1.01",
-            "Pod::Spelling" : "0",
             "parent" : "0",
             "perl" : "5.006",
             "strict" : "0",
@@ -45,12 +38,16 @@
          }
       },
       "test" : {
+         "recommends" : {
+            "CPAN::Meta" : "2.120900"
+         },
          "requires" : {
+            "ExtUtils::MakeMaker" : "0",
             "File::Spec" : "0",
             "File::Temp" : "0",
             "IO::Handle" : "0",
             "IPC::Open3" : "0",
-            "Test::More" : "0.88",
+            "Test::More" : "0",
             "perl" : "5.006"
          }
       }
@@ -58,15 +55,11 @@
    "provides" : {
       "Pod::Spell::CommonMistakes" : {
          "file" : "lib/Pod/Spell/CommonMistakes.pm",
-         "version" : "1.001"
+         "version" : "1.002"
       },
       "Pod::Spell::CommonMistakes::WordList" : {
          "file" : "lib/Pod/Spell/CommonMistakes/WordList.pm",
-         "version" : "1.001"
-      },
-      "Pod::Spelling::CommonMistakes" : {
-         "file" : "lib/Pod/Spelling/CommonMistakes.pm",
-         "version" : "1.001"
+         "version" : "1.002"
       }
    },
    "release_status" : "stable",
@@ -75,19 +68,20 @@
          "mailto" : "bug-pod-spell-commonmistakes at rt.cpan.org",
          "web" : "http://rt.cpan.org/Public/Dist/Display.html?Name=Pod-Spell-CommonMistakes"
       },
-      "homepage" : "http://search.cpan.org/dist/Pod-Spell-CommonMistakes/",
+      "homepage" : "https://github.com/apocalypse/perl-pod-spell-commonmistakes",
       "license" : [
          "http://dev.perl.org/licenses/"
       ],
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/apocalypse/perl-pod-spell-commonmistakes.git",
+         "url" : "https://github.com/apocalypse/perl-pod-spell-commonmistakes.git",
          "web" : "https://github.com/apocalypse/perl-pod-spell-commonmistakes"
       }
    },
-   "version" : "1.001",
+   "version" : "1.002",
    "x_BuiltWith" : {
       "modules" : {
+         "CPAN::Meta" : "2.142690",
          "Exporter" : "5.70",
          "ExtUtils::MakeMaker" : "7.00",
          "File::Spec" : "3.47",
@@ -97,11 +91,9 @@
          "IPC::Open3" : "1.13",
          "Module::Build::Tiny" : "0.039",
          "Pod::Spell" : "1.15",
-         "Pod::Spelling" : "0.6",
-         "Test::More" : "1.001008",
+         "Test::More" : "1.001009",
          "parent" : "0.228",
          "strict" : "1.07",
-         "version" : "0.9909",
          "warnings" : "1.18"
       },
       "perl" : {
@@ -145,7 +137,7 @@
                   ],
                   "exclude_match" : [],
                   "follow_symlinks" : "0",
-                  "include_dotfiles" : "0",
+                  "include_dotfiles" : "1",
                   "prefix" : "",
                   "prune_directory" : [],
                   "root" : "."
@@ -208,9 +200,9 @@
             "version" : "1.002"
          },
          {
-            "class" : "Dist::Zilla::Plugin::ReportVersions::Tiny",
-            "name" : "@Apocalyptic/ReportVersions::Tiny",
-            "version" : "1.10"
+            "class" : "Dist::Zilla::Plugin::Test::ReportPrereqs",
+            "name" : "@Apocalyptic/Test::ReportPrereqs",
+            "version" : "0.019"
          },
          {
             "class" : "Dist::Zilla::Plugin::Prepender",
@@ -366,11 +358,6 @@
             "version" : "4.006"
          },
          {
-            "class" : "Dist::Zilla::Plugin::LocaleMsgfmt",
-            "name" : "@Apocalyptic/LocaleMsgfmt",
-            "version" : "1.203"
-         },
-         {
             "class" : "Dist::Zilla::Plugin::NextRelease",
             "name" : "@Apocalyptic/NextRelease",
             "version" : "5.023"
@@ -383,17 +370,12 @@
          {
             "class" : "Dist::Zilla::Plugin::MinimumPerl",
             "name" : "@Apocalyptic/MinimumPerl",
-            "version" : "1.005"
+            "version" : "1.006"
          },
          {
             "class" : "Dist::Zilla::Plugin::Bugtracker",
             "name" : "@Apocalyptic/Bugtracker",
             "version" : "1.111080"
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::Homepage",
-            "name" : "@Apocalyptic/Homepage",
-            "version" : "1.101420"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaConfig",
@@ -434,9 +416,9 @@
             "version" : "1.003001"
          },
          {
-            "class" : "Dist::Zilla::Plugin::Repository",
-            "name" : "@Apocalyptic/Repository",
-            "version" : "0.20"
+            "class" : "Dist::Zilla::Plugin::GithubMeta",
+            "name" : "@Apocalyptic/GithubMeta",
+            "version" : "0.46"
          },
          {
             "class" : "Dist::Zilla::Plugin::MetaResources",
@@ -687,7 +669,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : null,
                   "signed" : 0,
-                  "tag" : "release-1.001",
+                  "tag" : "release-1.002",
                   "tag_format" : "release-%v",
                   "tag_message" : "Tagged release-%v",
                   "time_zone" : "local"
@@ -704,7 +686,7 @@
             "config" : {
                "Dist::Zilla::Plugin::Git::Push" : {
                   "push_to" : [
-                     "origin"
+                     "bitbucket"
                   ],
                   "remotes_must_exist" : 1
                },
@@ -714,6 +696,16 @@
             },
             "name" : "@Apocalyptic/Git::Push",
             "version" : "2.025"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::GitHub::Update",
+            "name" : "@Apocalyptic/GitHub::Update",
+            "version" : "0.38"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Bitbucket::Update",
+            "name" : "@Apocalyptic/Bitbucket::Update",
+            "version" : "0.001"
          },
          {
             "class" : "Dist::Zilla::Plugin::Clean",

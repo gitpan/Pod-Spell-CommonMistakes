@@ -8,7 +8,7 @@
 #
 use strict; use warnings;
 package Pod::Spell::CommonMistakes::WordList;
-$Pod::Spell::CommonMistakes::WordList::VERSION = '1.001';
+$Pod::Spell::CommonMistakes::WordList::VERSION = '1.002';
 our $AUTHORITY = 'cpan:APOCAL';
 
 # ABSTRACT: Holds the wordlist data for Pod::Spell::CommonMistakes
@@ -810,7 +810,7 @@ Pod::Spell::CommonMistakes::WordList - Holds the wordlist data for Pod::Spell::C
 
 =head1 VERSION
 
-  This document describes v1.001 of Pod::Spell::CommonMistakes::WordList - released October 31, 2014 as part of Pod-Spell-CommonMistakes.
+  This document describes v1.002 of Pod::Spell::CommonMistakes::WordList - released November 04, 2014 as part of Pod-Spell-CommonMistakes.
 
 =head1 SYNOPSIS
 

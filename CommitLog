@@ -1,10 +1,42 @@
 ==================================================
-Changes from 2013-10-31 00:00:00 +0000 to present.
+Changes from 2013-11-04 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 1.001 at 2014-10-31 19:09:08 +0000
+version 1.002 at 2014-11-04 20:39:55 +0000
 ------------------------------------------
+
+  Change: eeb9f4d4bd5d5fe69788c33010e300631bdb07d4
+  Author: Apocalypse <APOCAL@cpan.org>
+  Date : 2014-11-04 12:35:40 +0000
+
+    remove the Pod::Spelling adapter 
+
+  Change: c9ab1fde3e02cf4f36be00b25427ee0404f697dc
+  Author: Apocalypse <APOCAL@cpan.org>
+  Date : 2014-10-31 14:10:06 +0000
+
+    README.pod 
+
+------------------------------------------
+version 1.001 at 2014-10-31 19:12:25 +0000
+------------------------------------------
+
+  Change: d6478a6acd7954b4fdc06c38a0830682ffafaf6d
+  Author: Apocalypse <APOCAL@cpan.org>
+  Date : 2014-10-31 12:12:25 +0000
+
+    New CPAN release of Pod-Spell-CommonMistakes - v1.001
+
+    - Updated the wordlist
+
+    - Add support for Pod::Spelling as an adaptor, RT#80625 ( thanks
+
+    RIBASUSHI! )
+
+    [STATISTICS]
+
+    - code churn: 8 files changed, 212 insertions(+), 17 deletions(-) 
 
   Change: 18e2e365b08a6338fe1f05b650abfcbb4cafd69d
   Author: Apocalypse <APOCAL@cpan.org>
@@ -61,5 +93,5 @@ version 1.001 at 2014-10-31 19:09:08 +0000
     first stab at adaptor for Pod::Spelling 
 
 ===============================================
-Plus 1 release after 2013-10-31 00:00:00 +0000.
+Plus 1 release after 2013-11-04 00:00:00 +0000.
 ===============================================
